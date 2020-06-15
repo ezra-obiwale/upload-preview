@@ -3,16 +3,16 @@ export default (inputSelector, targetSelectorOrCallback) => {
     return
   }
 
-  let callback = targetSelectorOrCallback
+  let func = targetSelectorOrCallback
 
-  if (typeof callback !== 'function') {
-    callback = ({ url }) => {
+  if (typeof func !== 'function') {
+    func = ({ url }) => {
       document.querySelector(targetSelectorOrCallback).src = url
     }
   }
 
   if (!window.FileReader) {
-    return callback({}, -1, new Error('Browser does not support media preview'))
+    return func({}, -1, new Error('Browser does not support media preview'))
   }
 
   document.querySelectorAll(inputSelector).forEach((input) => {
@@ -24,9 +24,9 @@ export default (inputSelector, targetSelectorOrCallback) => {
       const reader = new FileReader()
       const URL = window.URL || window.webkitURL
 
-      this.files.forEach((file, index) => {
+      Array.from(this.files).forEach((file, index) => {
         reader.onload = function () {
-          callback(
+          func(
             {
               raw: this.result,
               url: URL ? URL.createObjectURL(file) : null,
