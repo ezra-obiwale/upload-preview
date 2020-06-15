@@ -14,15 +14,15 @@ export default {
   input: 'src/index.js',
   output: [
     {
-      file: pkg.rollup.main,
+      file: pkg.main,
       format: 'cjs'
     },
     {
-      file: pkg.rollup.module,
+      file: pkg.module,
       format: 'es'
     },
     {
-      file: pkg.rollup.browser,
+      file: pkg.browser,
       format: 'iife',
       name: name
     }

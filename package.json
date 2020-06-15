@@ -1,16 +1,13 @@
 {
-  "name": "library",
-  "version": "0.0.0",
-  "description": "A short description of the library",
-  "rollup": {
-    "main": "dist/library.js",
-    "module": "dist/library.es.js",
-    "browser": "dist/library.min.js"
-  },
-  "repository": "https://github.com/ezra-obiwale/npm-library",
+  "name": "@ezraobiwale/upload-preview",
+  "version": "0.1.0",
+  "description": "Library to preview uploaded media files",
+  "repository": "https://github.com/ezra-obiwale/upload-preview",
   "author": "Ezra Obiwale",
   "license": "MIT",
-  "main": "dist/library.es.js",
+  "main": "dist/upload-preview.js",
+  "module": "dist/upload-preview.es.js",
+  "browser": "dist/uploader-preview.min.js",
   "devDependencies": {
     "@babel/core": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
