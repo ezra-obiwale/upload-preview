@@ -1,6 +1,6 @@
 {
   "name": "@ezraobiwale/upload-preview",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Library to preview uploaded media files",
   "repository": "https://github.com/ezra-obiwale/upload-preview",
   "author": "Ezra Obiwale",

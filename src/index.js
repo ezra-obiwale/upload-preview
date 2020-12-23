@@ -1,3 +1,19 @@
+export const readFile = (file) => {
+  return new Promise(resolve => {
+    const reader = new FileReader()
+    const URL = window.URL || window.webkitURL
+
+    reader.onload = function () {
+      resolve({
+        raw: this.result,
+        url: URL ? URL.createObjectURL(file) : null,
+      })
+    }
+
+    reader.readAsDataURL(file)
+  })
+}
+
 export default (inputSelector, targetSelectorOrCallback) => {
   if (!targetSelectorOrCallback) {
     return
@@ -21,21 +37,9 @@ export default (inputSelector, targetSelectorOrCallback) => {
     }
 
     input.addEventListener('change', function () {
-      const reader = new FileReader()
-      const URL = window.URL || window.webkitURL
-
-      Array.from(this.files).forEach((file, index) => {
-        reader.onload = function () {
-          func(
-            {
-              raw: this.result,
-              url: URL ? URL.createObjectURL(file) : null,
-            },
-            index
-          )
-        }
-
-        reader.readAsDataURL(file)
+      Array.from(this.files).forEach(async (file, index) => {
+        const result = await readFile(file)
+        func(result, index)
       })
     })
   })

@@ -1,18 +1,42 @@
-# NPM Library
+# Upload Preview
 
-A template for building nodejs npm libaries with webpack and rollup.
+Creates a url that can be provided to `<image src="..." />` from `<input type="file">`.
 
-## Features
+## Install
 
-- Handles ES6 transpiling
-- Bundles for browser and commonjs
-- Minimizes built files
-- Publishes on the built files to npmjs.org
-- Excludes the built files from being committed to git
+```bash
+yarn add @ezraobiwale/upload-preview
+```
 
 ## Usage
 
-1. Change all instances of **library** in the `package.json` file to the name of
-   the library being built.
-2. Write your code on `src/index.js` file.
-3. Run `yarn build` to build files for distribution.
+### Preview a file input
+
+```html
+<img id="file-preview" src="#" alt>
+
+<input id="file" type="file">
+```
+
+```js
+import preview from '@ezraobiwale/upload-preview'
+
+preview('#file', '#file-preview')
+
+// or do something else with the result
+
+preview('#file', ({ url, raw }, index, error) => {
+   // do something with url or raw
+})
+```
+
+### Reading file manually
+
+```js
+import { readFile } from '@ezraobiwale/upload-preview'
+
+const file = File // a file object gotten from wherever
+
+const { url, raw } = await readFile(file)
+// do something with url or raw
+```
